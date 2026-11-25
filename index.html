@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f59e0b" />
+  <title>บ้านน้ำผึ้งไทย — น้ำผึ้งแท้ธรรมชาติ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">🐝</span><span>บ้านน้ำผึ้งไทย</span></a>
+    <nav>
+      <a href="#products">สินค้า</a>
+      <a href="#orders">ติดตามออเดอร์</a>
+    </nav>
+    <button class="cart-button" id="cartButton" type="button">ตะกร้า <span id="cartCount">0</span></button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">จากผึ้งไทยแท้ 100%</span>
+        <h1>น้ำผึ้งบริสุทธิ์<br><em>อร่อยธรรมชาติ</em></h1>
+        <p>คัดสรรจากฟาร์มผึ้งในไทย ไม่ปรุงแต่ง กลิ่นหอมและรสชาติจากธรรมชาติ</p>
+        <a class="primary-button" href="#products">เลือกซื้อสินค้า</a>
+      </div>
+      <div class="hero-art" aria-label="น้ำผึ้งไทย"><div class="honey-drop">🍯</div></div>
+    </section>
+
+    <section class="trust-row" aria-label="จุดเด่น">
+      <span>✓ น้ำผึ้งแท้ 100%</span><span>✓ คัดสรรคุณภาพ</span><span>✓ ส่งตรงถึงบ้าน</span>
+    </section>
+
+    <section class="products-section" id="products">
+      <div class="section-heading"><div><span>OUR PRODUCTS</span><h2>เลือกสรรน้ำผึ้งของคุณ</h2></div></div>
+      <div class="product-grid" id="productGrid"></div>
+    </section>
+
+    <section class="orders-section" id="orders">
+      <div class="section-heading"><div><span>ORDER MANAGEMENT</span><h2>จัดการคำสั่งซื้อ</h2></div></div>
+      <div class="order-tools">
+        <button class="secondary-button" id="refreshOrders" type="button">ดึงข้อมูลออเดอร์ล่าสุด</button>
+        <button class="secondary-button" id="printLabels" type="button">พิมพ์ป้ายทั้งหมด</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>เลขออเดอร์</th><th>ลูกค้า</th><th>สินค้า / จำนวน</th><th>ยอดรวม</th><th>สถานะ</th><th>จัดการ</th></tr></thead>
+          <tbody id="orderTable"><tr><td colspan="6" class="empty">ยังไม่มีข้อมูลออเดอร์</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+    <div class="drawer-head"><h2>ตะกร้าสินค้า</h2><button id="closeCart" type="button" aria-label="ปิด">×</button></div>
+    <div id="cartItems" class="cart-items"></div>
+    <div class="cart-footer"><div class="total-row"><span>ยอดรวม</span><strong id="cartTotal">฿0</strong></div><button class="primary-button full" id="checkoutButton" type="button">ชำระและสั่งซื้อ</button></div>
+  </aside>
+  <div class="backdrop" id="backdrop"></div>
+
+  <dialog id="checkoutDialog">
+    <form id="checkoutForm" method="dialog">
+      <div class="dialog-head"><h2>ข้อมูลจัดส่ง</h2><button value="cancel" aria-label="ปิด">×</button></div>
+      <label>ชื่อ-นามสกุล<input name="name" required placeholder="เช่น สมชาย ใจดี"></label>
+      <label>เบอร์โทรศัพท์<input name="phone" required inputmode="tel" pattern="[0-9]{9,10}" placeholder="0812345678"></label>
+      <label>ที่อยู่จัดส่ง<textarea name="address" required rows="3" placeholder="บ้านเลขที่ ถนน ตำบล อำเภอ จังหวัด รหัสไปรษณีย์"></textarea></label>
+      <label>หมายเหตุ<textarea name="note" rows="2" placeholder="ข้อความหรือคำสั่งพิเศษ"></textarea></label>
+      <button class="primary-button full" id="submitOrder" type="submit">ยืนยันคำสั่งซื้อ</button>
+    </form>
+  </dialog>
+
+  <dialog id="labelDialog">
+    <div id="printArea" class="print-area"></div>
+  </dialog>
+
+  <div id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
