@@ -3,8 +3,8 @@ const PRODUCTS = [
   { id:'HN-002', name:'น้ำผึ้งเกสรลำไย 500 กรัม', short:'รสหวานเข้ม หอมเกสรลำไยเป็นเอกลักษณ์', price:280, image:'assets/images/honey-longan.svg' }
 ];
 
-// วาง Google Apps Script Web App URL หลังสร้างจากไฟล์ apps-script/Code.gs
-const SHEET_WEB_APP_URL = '';
+// Google Apps Script Web App URL
+const SHEET_WEB_APP_URL = 'https://script.google.com/a/macros/spumail.net/s/AKfycbxMJ0dYP1DdMd-SRNlHqOavsAfy335McnJ4YmUIBzGUxrVmD3elCXZUEzXb_gU3a462/exec';
 const $ = (selector) => document.querySelector(selector);
 let cart = JSON.parse(localStorage.getItem('honey-cart') || '[]');
 let orders = JSON.parse(localStorage.getItem('honey-orders') || '[]');
@@ -66,7 +66,7 @@ async function submitOrder(event) {
   let sheetSaved = false;
   if (SHEET_WEB_APP_URL) {
     try {
-      const response = await fetch(SHEET_WEB_APP_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(order)});
+      await fetch(SHEET_WEB_APP_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(order)});
       sheetSaved=true;
     } catch (error) { console.warn(error); }
   }
